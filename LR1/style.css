@@ -1,0 +1,149 @@
+#navbarwrap {
+margin-top: 15px;
+
+}
+#returncall {
+    margin-right:400px;
+
+}
+.gridimages {
+    margin-top: -10px;
+    margin-left: 90px;
+}
+
+
+
+#gridwrap {
+    background-color: #EAEAEA;
+    padding:10px ;
+
+
+}
+#gridwrapcontent{
+
+
+}
+#search {
+    width:500px;
+    height: 50px;
+}
+
+#catalog {
+    width: 250px;
+    height: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-top: 17px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+    border-radius: 15px;
+
+
+
+
+}
+#lilagricola {
+    width: 80px;
+    height: 110px;
+    margin-top: 25px;
+    border: 1px lightgray solid;
+}
+#backarrow {
+    border: 1px lightgray solid;
+    padding-right: 30px;
+    margin-top: -100px;
+
+}
+#bigagricola{
+    position: static;
+    width: auto;
+    max-width: 400px;
+    max-height: 50vw;
+    height: auto;
+    margin-left: 500px;
+    margin-top: 115px;
+    float: left;
+}
+#buttonagricola {
+    position: absolute;
+    left: 10px;
+    margin-top: 70px;
+}
+#bread {
+    margin: 30px;
+}
+.breadcontent{
+    color: #3E3E3E;
+}
+#heart {
+    margin-top: -16px;
+
+}
+
+#favbutton {
+    height: 50px;
+    width: 100px;
+    background-color:white;
+    margin-left: 30px;
+}
+#addcartbutton {
+    width: 425px;
+    height:50px;
+    background-color:#53A17E;
+    margin-left: 332px;
+
+
+}
+body{
+    font:15px ‘Mont’, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: #3E3E3E;
+}
+
+#productname {
+    margin-left: 1245px;
+    margin-top: 100px;
+    font-size: 30px;
+    font-weight: 700;
+}
+#price {
+
+    font-weight: 700;
+    margin-left: 332px;
+    margin-top: 60px;
+    font-size: 36px;
+    border-radius: 15px;
+}
+#nalich {
+    font-size: 14px;
+    font-weight: 600;
+    color: #53A17E;
+    margin-left: -170px;
+    margin-top: 80px;
+}
+#benefits {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    margin-left: -400px;
+}
+.gridimages2 {
+    width: 120px;
+    margin-left: -25px;
+}
+#benefitsblock {
+    margin-top: 50px;
+    position: relative;
+    left: 350px;
+    padding-right: 100px;
+    margin-right: 555px;
+}
+#benefitsborder{
+    border-top: 1px lightgray solid;
+    padding-top: 50px;
+}
+#badgebonus {
+    height: 20px;
+    width: 100px;
+    margin-left: 345px;
+}
