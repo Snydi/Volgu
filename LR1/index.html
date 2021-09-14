@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <link href = "assets/fonts/stylesheet.css" rel = "stylesheet" type = "text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+
+
+<body>
+
+<div >
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbarwrap" style="background-color:white;" >
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#"> <img src="assets/images/logo.png" alt=""> </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-fill">
+
+                <li>
+
+                    <a href="#">  <span class="badge bg-success" id="catalog" >Каталог </span>    </a>
+                </li>
+                <li>
+                    <form class="d-flex" id="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <img class="gridimages"  src="assets/images/box.png" alt="" >
+                    </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Заказы</a>
+                </li>
+                <li class="nav-item">
+                    <img class="gridimages"  src="assets/images/heart.png" alt="" >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Избранное</a>
+                </li>
+                <li class="nav-item">
+                    <img class="gridimages"  src="assets/images/man.png" alt="" >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <img class="gridimages"  src="assets/images/shopping%20bag.png" alt="" >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Корзина</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+</div>
+
+
+
+<div class="container-fluid" id="gridwrap">
+    <div class="row" id="gridwrapcontent ">
+        <div class="col" >
+                <a class="link-secondary" href="#"> Город: Москва</a>
+        </div>
+
+        <div class="col">
+            <a class="link-secondary" href="#">  8(495) 127-71-81</a>
+        </div>
+        <div class="col" id="returncall">
+            <a class="link-secondary" href="#">  Обратный звонок</a>
+        </div>
+        <div class="col">
+            <a class="link-secondary" href="#">  О компании</a>
+            </div>
+        <div class="col">
+            <a class="link-secondary" href="#">  Доставка и оплата </a>
+        </div>
+        <div class="col">
+            <a class="link-secondary" href="#">  Бонусная система</a>
+        </div>
+        <div class="col">
+            <a class="link-secondary" href="#"> Отзывы</a>
+        </div>
+        <div class="col">
+            <a class="link-secondary" href="#"> Контакты </a>
+        </div>
+    </div>
+    </div>
+
+<nav style="--bs-breadcrumb-divider: '-';" aria-label="breadcrumb" >
+    <ol class="breadcrumb" id="bread">
+        <li class="breadcrumb-item "><a class="breadcontent" href="#" >Домашняя страница</a></li>
+        <li class="breadcrumb-item"><a class="breadcontent" href="#" style="width: 80px">Каталог</a></li>
+        <li class="breadcrumb-item " ><a class="breadcontent"  href="#" style="width: 250px">Удобрения и регуляторы роста</a></li>
+        <li class="breadcrumb-item"><a class="breadcontent"  href="#" style="width: 100px">Удобрения</a></li>
+        <li class="breadcrumb-item active" aria-current="page" ><p href="#"style="width: 400px">Агрикола "Грин Бэлт" для комнатных растений 25г</p></li>
+
+    </ol>
+</nav>
+
+<div class="container" id="buttonagricola">
+<div class="col">
+    <button class="btn btn-default" id="backarrow">
+    <img  src="assets/images/backarrow.png" alt="" >
+    <a>Назад</a>
+</button>
+</div>
+<div class="col">
+<button class="btn btn-default">
+     <img  id="lilagricola" src="assets/images/agricola.jpg" alt="" >
+</button>
+</div>
+</div>
+
+
+<img id="bigagricola" src="assets/images/agricola.jpg" alt="">
+
+<a id="productname">Агрикола "Грин Бэлт" для комнатных растений 25г</a>
+<p> <span class="badge bg-warning text-dark" id="badgebonus">0 бонусов</span></p>
+<div>
+    <div class="row">
+
+    <div class="col">
+        <p id="price"> 35 ₽</p>
+    </div>
+
+<div class="col">
+    <p id="nalich" >В наличии на складе</p>
+</div>
+     </div>
+</div>
+
+<div class="container-fluid "  >
+    <div class="row ">
+
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-lg" id="addcartbutton">Добавить в корзину</button>
+
+        </div>
+
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-lg" id="favbutton"> <img   src="assets/images/heart2.png" alt="" id="heart"></button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container" id="benefitsblock" >
+   <div class="row" id="benefitsborder">
+
+       <div class="col">
+        <div class="row">
+            <img  class="gridimages2" src="assets/images/wallet.png" alt="" >
+        </div>
+        <div class="row">
+            <img   class="gridimages2"  src="assets/images/piggybank.png" alt="" >
+        </div>
+        <div class="row">
+            <img  class="gridimages2" src="assets/images/talkingheads.png" alt="" >
+        </div>
+    </div>
+
+       <div class="col d-grid gap-5" id="benefits">
+        <div class="row">
+            Возврат и обмен без проблем
+        </div>
+        <div class="row">
+            Возвращаем до 5% бонусами за заказ
+        </div>
+        <div class="row">
+            В любой ситуации, мы на стороне клиента
+        </div>
+
+
+    </div>
+       </div>
+</div>
+
+
+
+</body>
+</html>
