@@ -1,0 +1,207 @@
+#navbarwrap {
+margin-top: 15px;
+
+
+}
+#returncall {
+    margin-right:400px;
+
+}
+.gridimages {
+    margin-top: -10px;
+    margin-left: 45px;
+}
+
+
+
+#gridwrap {
+    background-color: #EAEAEA;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+
+}
+#gridwrapcontent{
+
+
+}
+#search {
+    width:500px;
+    height: 50px;
+    margin-right: -20px;
+}
+
+#catalog {
+    width: 250px;
+    height: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-top: 17px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+    border-radius: 15px;
+
+
+
+
+}
+#lilagricola {
+    width: 80px;
+    height: 110px;
+    margin-top: 25px;
+    border: 1px lightgray solid;
+}
+#backarrow {
+    border: 1px lightgray solid;
+    padding-right: 30px;
+    margin-top: -100px;
+
+}
+#bigagricola{
+    position: static;
+    width: auto;
+    max-width: 400px;
+    max-height: 50vw;
+    height: auto;
+    margin-left: 500px;
+    margin-top: 115px;
+    float: left;
+    margin-right: 0px;
+}
+#buttonagricola {
+
+    margin-left: 185px;
+}
+#nalich {
+    font-size: 14px;
+    font-weight: 600;
+    color: #53A17E;
+    margin-top: 80px;
+    margin-left: -230px;
+}
+#benefits {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    margin-left: -255px;
+
+
+}
+.gridimages2 {
+    width: 120px;
+    margin-left: -20px;
+
+}
+#benefitsblock {
+    margin-top: 50px;
+    position: relative;
+    left: 200px;
+
+
+}
+#benefitsborder{
+    border-top: 1px lightgray solid;
+    padding-top: 50px;
+    margin-right: 155px;
+}
+#badgebonus {
+    height: 20px;
+    width: 100px;
+    margin-left: 195px;
+
+}
+.selfmadebadge {
+    padding: 20px;
+    margin-top: 50px;
+    margin-left: 1090px;
+    width:560px;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+
+}
+.delivery {
+    margin-top: 20px
+}
+.tab {
+
+}
+.secondtab {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 24px;
+}
+.leavereply {
+    width: 400px;
+    height: 50px;
+    background-color:#53A17E;
+    border-radius: 15px;
+
+}
+.big-grid {
+    padding-top: 50px;
+}
+
+.second-col-items-left {
+    margin-left: 100px;
+    border-bottom: 1px lightgray solid;
+
+}
+.second-col-items-right {
+    margin-right: 30px;
+    border-bottom: 1px lightgray solid;
+}
+
+.third-col-items-left {
+    border-bottom: 1px lightgray solid;
+
+}
+.third-col-items-right {
+    border-bottom: 1px lightgray solid;
+    margin-right: 170px;
+}
+.card-image {
+    display: block;
+    margin-left: auto;
+    margin-top: 20px;
+    width: 70%;
+    height: 300px;
+
+
+
+}
+.price-of-card {
+    float: left;
+}
+.yellow-add-to-cart {
+    float: right;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    fill: white;
+}
+.svg-heart {
+    margin-left: -25px;
+    margin-top: 20px;
+    border: 1px #53A17E solid;
+    border-radius: 48%;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+.customers {
+    text-align: left;
+    background: #f5f5f5;
+    border-radius: 10%;
+
+}
+.spacedown {
+    margin-bottom: 20px;
+}
+.header {
+
+    margin-top: 30px;
+    margin-left: 10px;
+}
+.td {
+    width: 10px;
+}
