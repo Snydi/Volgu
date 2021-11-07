@@ -6,14 +6,7 @@ $dbName = 'collectorsdb';
 
 $conn = mysqli_connect($dbServername,$dbUsername,$dbPassword,$dbName );
 
-
-$query = "SELECT *,collectors.id FROM collectors INNER JOIN crews ON collectors.id_crew = crews.id";
-$sql = $query;
-
-
-$crewsql = "SELECT crew FROM crews";
-$crewdata = mysqli_query($conn, $crewsql) or die(mysqli_error($conn));
-
+$sql = "SELECT *,collectors.id FROM collectors INNER JOIN crews ON collectors.id_crew = crews.id";
 
 
 if(isset($_GET['submit'])) {
@@ -65,7 +58,36 @@ if(isset($_GET['submit'])) {
 
 }
 
+if (isset($_GET['clearFilter'])){
+    $_GET['id']=null;
+    $_GET['name']=null;
+    $_GET['characteristic']=null;
+    $_GET['crew']=null;
+    $_GET['to_date']=null;
+    $_GET['from_date']=null;
+}
+
+
+$crewsql = "SELECT crew FROM crews";
+$crewdata = mysqli_query($conn, $crewsql) or die(mysqli_error($conn));
+
+$crews = array();
+
+if(isset($crewdata))
+    if(mysqli_num_rows($crewdata))
+        while($row = mysqli_fetch_assoc($crewdata))
+            $crews[]=$row['crew'];
+
+
+
 $data = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+$dataarray=array();
+
+if(isset($data)) {
+    if (mysqli_num_rows($data))
+        while ($row = mysqli_fetch_assoc($data))
+            $dataarray[] = $row;
+}
 
 
 

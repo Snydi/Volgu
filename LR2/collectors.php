@@ -1,4 +1,6 @@
-<?php include_once 'logic.php';
+<?php
+include_once 'logic.php';
+error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 
@@ -74,40 +76,41 @@
 
             <div class="mb-3" >
                 <label>ID</label>
-                <input type="text" name="id" placeholder="ID" value="" class="form-control">
+                <input type="text" name="id" placeholder="ID" value="<?php echo htmlspecialchars($_GET['id']) ?>" class="form-control">
 
             </div>
 
             <div class="mb-3" >
                 <label>Дата рождения:</label>
-                <input type="text" name="from_date" placeholder="От" value="" class="form-control">
-                <input type="text" name="to_date" placeholder="До" value="" class="form-control">
+                <input type="text" name="from_date" placeholder="От" value="<?php echo htmlspecialchars($_GET['from_date']) ?>" class="form-control">
+                <input type="text" name="to_date" placeholder="До" value="<?php echo htmlspecialchars($_GET['to_date']) ?>" class="form-control">
             </div>
 
             <div class="mb-3" >
                 <label>Фильтрация по ФИО работника:</label>
-                <input type="text" name="name" placeholder="Введите ФИО работника" value="" class="form-control">
+                <input type="text" name="name" placeholder="Введите ФИО работника" value="<?php echo htmlspecialchars($_GET['name']) ?>" class="form-control">
             </div>
 
             <div class="mb-3">
                 <label>Фильтрация по бригаде:</label>
                 <select name="crew" class="form-control">
                     <option value="" selected="">Выберите бригаду:</option>
-                    <?php
-                    if(mysqli_num_rows($crewdata)) {
-                        while ($row = mysqli_fetch_assoc($crewdata)){
-                        $crew = $row['crew'];?>
-                        <option><?php echo $crew; ?></option> <?php
-
-                        }
-                    }
-                    ?>
+                    <?php if (isset($crews))
+                    foreach ($crews as $item) {?>
+                    <option value="<?php echo htmlspecialchars($item)?>"
+                        <?php
+                        if ($_GET['crew']==htmlspecialchars($item)) {?>
+                            selected="selected"
+                        <?php }?>
+                    >
+                        <?php echo htmlspecialchars($item)?>
+                        <?php } ?>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label>Фильтрация по личной характеристике:</label>
-                <textarea class="form-control" placeholder="Введите характеристику сборщика" name="characteristic"></textarea>
+                <input class="form-control" placeholder="Введите характеристику сборщика" name="characteristic" value="<?php echo htmlspecialchars($_GET['characteristic']) ?>">
             </div>
 
             <input type="submit" name="submit" value="Применить фильтр" class="btn btn-success">
@@ -130,36 +133,15 @@
             </thead>
 
            <tbody>
-
-
-
-<?php if(mysqli_num_rows($data)) {
-        while ($row = mysqli_fetch_assoc($data)) {
-            $id = $row['id'];
-            $img_path = $row['img_path'];
-            $name = $row['name'];
-            $crew = $row['crew'];
-            $birth_date = $row['birth_date'];
-            $characteristic = $row['characteristic'];
-
-            ?>
             <tr>
-                <td><?php echo $id;?></td>
-                <td >  <?php  echo '<img id="gang"  src="https://localhost/LR2/inc/images/'.$img_path.'"/>' ?> </td>
-                <td><?php echo $name;?></td>
-                <td><?php echo $crew;?></td>
-                <td><?php echo $characteristic;?></td>
-                <td><?php echo $birth_date;?></td>
+                <?php
+                if(isset($dataarray))
+                    foreach ($dataarray as $item) {
+                        echo '<tr><td>'. $item['id']. '</td>'.'<td>'.'<img style="height:150px;width:150px;" src="https://localhost/LR2/inc/images/'.$item['img_path'].'"/>'.'</td>'.'<td>'.$item['name'].'</td>'.'<td>'.$item['crew'].'</td>'.'<td>'.$item['characteristic'].'</td>'.'<td>'.$item['birth_date'].'</td>' .'</tr>' . " ";
+                    }
+
+                ?>
             </tr>
-
-            <?php
-
-        }
-    }
-?>
-
-
-
             </tbody>
         </table>
 
