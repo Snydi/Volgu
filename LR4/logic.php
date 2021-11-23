@@ -1,30 +1,69 @@
 <?php
-$url = "";
-$url1 = "https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D0%BD%D0%BE%D1%80%D0%B8%D0%BD%D1%85%D0%B8";
-$url2 = "https://echo.msk.ru/programs/sorokina/2917870-echo/";
-$url3 = "https://mishka-knizhka.ru/skazki-dlay-detey/zarubezhnye-skazochniki/skazki-alana-milna/vinni-puh-i-vse-vse-vse/#glava-pervaya-v-kotoroj-my-znakomimsya-s-vinni-puhom-i-neskolkimi-pchy";
+if (isset($_POST['submit'])) {
 
+$html = $_POST['text'];
 
-    if (isset($_GET['preset'])) {
-        if ($_GET['preset'] === "1") {
-            $url = "https://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D0%BD%D0%BE%D1%80%D0%B8%D0%BD%D1%85%D0%B8";
-        }
-        if ($_GET['preset'] === "2") {
-            $url = "https://echo.msk.ru/programs/sorokina/2917870-echo/";
-        }
-        if ($_GET['preset'] === "3") {
-            $url = "https://mishka-knizhka.ru/skazki-dlay-detey/zarubezhnye-skazochniki/skazki-alana-milna/vinni-puh-i-vse-vse-vse/#glava-pervaya-v-kotoroj-my-znakomimsya-s-vinni-puhom-i-neskolkimi-pchy";
-        }
-        $temp = curl_init();
-        curl_setopt($temp, CURLOPT_URL, $url);
-        curl_setopt($temp, CURLOPT_RETURNTRANSFER, true);
-        $html = curl_exec($temp);
-        $_POST['text'] = $html;
-        $_SESSION['html'] = $html;
+$html= str_replace(" - ","–",$html);
+$html= str_replace(" -- "," —",$html);
+$html= str_replace("итд","и т.д",$html);
+$html= str_replace("итп","и т.п",$html);
 
+$html  = mb_convert_encoding($html , 'HTML-ENTITIES', 'UTF-8');
+$dom = new DOMDocument();
+$dom->loadHTML($html);
+
+$classes = array();
+$styles = array();
+    foreach($dom->getElementsByTagName('*') as $element ){
+        if ($element->hasAttribute('style')) {
+
+        $style = $element->getAttribute('style');
+        $element->removeAttribute('style');
+        $styles[] = $style;
+
+        $style= str_replace(" ","",$style);
+        $style = preg_replace('/[^A-Za-z0-9\-]/', '', $style);
+        $classes[] = $style;
+
+        $class = $element->getAttribute('class');
+        $class .=  " ";
+        $class .=  $style;
+
+        $element->setAttribute("class", $class);
+        }
+}
+$classes = array_unique($classes);
+$styles = array_unique($styles);
+
+echo '<style>';
+    for ($i = 0; $i < count($classes); ++$i) {
+    if (!empty($classes[$i])) {
+        echo '.'.$classes[$i].'{';
+        echo $styles[$i] . '}';
     }
+    }
+    echo '</style>';
 
+$count = 0;
+echo '<ol>';
+    foreach(array('h1', 'h2','h3') as $tag) {
+    foreach($dom->getElementsByTagName($tag) as $node) {
+    $part = "part";
+    $count = $count + 1;
+    $part.= $count;
+    $header = $matches[$node->getLineNo()] = $dom->saveHtml($node);
+    $header = strip_tags($header);
 
+    if (iconv_strlen($header) > 50 ) {
+        $header = mb_substr($header,0,50);
+        $header .= "...";
+        }
 
+    echo $header = '<li>' .'<H2>'. '<a href="#'. $part .'">'.$header .'</a>'.'</H2>'.'</li>';
+    $node->setAttribute("id", $part);
+        }
+    }
+    echo  '</ol>';
 
-
+echo  $dom->saveHTML();
+}

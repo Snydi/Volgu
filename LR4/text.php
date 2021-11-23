@@ -1,8 +1,9 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 include_once  'header.php';
+include_once  'preset.php';
 require_once 'logic.php';
 ?>
-
     <form action="text.php" method="POST"  >
             <div class="mb-3" >
                 <label>Text</label>
@@ -10,28 +11,6 @@ require_once 'logic.php';
                 <input type="submit" name="submit" value="Войти" class="btn btn-success">
             </div>
     </form>
-
 <?php
-
-
-if (isset($_POST['submit'])) {
-
-    $html =  $_SESSION['html'];
-    $html = $_POST['text'];
-    $html= str_replace(" - ","–",$html);
-    $html= str_replace(" -- "," —",$html);
-    echo $html;
-    unset($_SESSION['html']);
-}
-
-
-
-?>
-
-
-<?php
-
-
-
-
 include_once 'footer.php';
+
