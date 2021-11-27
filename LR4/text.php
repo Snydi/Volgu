@@ -12,5 +12,10 @@ require_once 'logic.php';
             </div>
     </form>
 <?php
+if (isset($_POST['submit'])) {
+     echo task5and8($html);
+     task11($html);
+     echo task20($html);
+}
 include_once 'footer.php';
 
