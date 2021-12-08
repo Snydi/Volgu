@@ -5,9 +5,8 @@ class Dbh {
     private $dbPassword = "";
     private $dbName = "collectorsdb";
 
-    protected function connect() {
-        $conn = mysqli_connect($this->dbServername,$this->dbUsername,$this->dbPassword,$this->dbName );
-        return $conn;
+    function connect() {
+        return mysqli_connect($this->dbServername,$this->dbUsername,$this->dbPassword,$this->dbName );
     }
 
 

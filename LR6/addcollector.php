@@ -3,6 +3,8 @@ error_reporting(E_ERROR | E_PARSE);
 include_once 'crud.php';
 include_once 'header.php';
 $object = new Crud();
+$dbh = new Dbh();
+$conn = $dbh->connect();
 ?>
 
 <div class="container">
@@ -30,11 +32,24 @@ $object = new Crud();
                 <input type="file" class="form-control" name="photo" title="Фото">
             </div>
         </div>
+        <?php $crews = $object->showCrews($conn);
+        ?>
         <div class="col-4">
             <div class="input-group">
                  <select name="id_crew" class="form-control">
                      <option value="" selected=""> Бригада </option>
-                     <?php $object->showCrews();
+                     <?php
+                     if (isset($crews)){
+                     foreach ($crews as $item) {?>
+                     <option value="<?php echo htmlspecialchars($item)?>"
+                         <?php
+                         if ($_GET['id_crew']==htmlspecialchars($item)) {?>
+                             selected="selected"
+                         <?php }?>
+                     >
+                         <?php echo htmlspecialchars($item)?>
+                         <?php }
+                         }
                      ?>
                 </select>
             </div>
@@ -45,5 +60,14 @@ $object = new Crud();
     <div class="mallbery-caa" style="z-index: 2147483647 !important; text-transform: none !important; position: fixed;"></div>
 
 <?php
-$object->addCollector();
+if (isset($_POST['submit_add_collector'])) {
+    $add_collector_param = array();
+    $add_collector_param[] =  mysqli_real_escape_string($conn, $_POST['name']);
+    $add_collector_param[] =  mysqli_real_escape_string($conn, $_POST['birth_date']);
+    $add_collector_param[] =  mysqli_real_escape_string($conn, $_POST['characteristic']);
+    $add_collector_param[] =  mysqli_real_escape_string($conn, $_POST['id_crew']);
+    $add_collector_param[] =  $object->importPhoto();
+    $object->addCollector($conn,$add_collector_param);
+}
+
 include_once 'footer.php';

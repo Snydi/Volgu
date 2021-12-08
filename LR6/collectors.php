@@ -3,6 +3,8 @@ error_reporting(E_ERROR | E_PARSE);
 include_once 'crud.php';
 include_once 'header.php';
 $object = new Crud();
+$dbh = new Dbh();
+$conn = $dbh->connect();
 ?>
 <div class="main py-5" >
 
@@ -24,8 +26,26 @@ $object = new Crud();
            <tbody>
             <tr>
                 <?php
-                $object->deleteCollector();
-                $object->showTable();
+                $delete_collector_param = array();
+                $delete_collector_param[] = $_GET['del'];
+                $delete_collector_param[] = $_GET['img'];
+                $object->deleteCollector($conn,$delete_collector_param);
+
+                $dataarray = $object->showTable($conn);
+
+                if(isset($dataarray))
+                    foreach ($dataarray as $item) {
+                        echo '<tr>';
+                        echo '<td>'. $item['id']. '</td>';
+                        echo '<td>'.'<img style="height:150px;width:150px;" src="https://localhost/LR6/inc/images/'.$item['img_path'].'"/>'.'</td>';
+                        echo '<td>'.$item['name'].'</td>';
+                        echo '<td>'.$item['crew'].'</td>';
+                        echo '<td>'.$item['characteristic'].'</td>';
+                        echo '<td>'.$item['birth_date'].'</td>' ;
+                        echo '<td>'.'<a class="btn btn-primary" type="button" id="edit" href="/LR6/edit.php?editid='.$item['id'].'">Редактировать</a>' .'</td>';
+                        echo '<td>'.'<a type="button" class="btn btn-danger delete" href ="?del='.$item['id'].'&img='.$item['img_path'].'">Удалить</a>'.'</td>';
+                        echo '</tr>' . " ";
+                    }
                 ?>
             </tr>
             </tbody>

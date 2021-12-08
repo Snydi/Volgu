@@ -3,6 +3,8 @@ error_reporting(E_ERROR | E_PARSE);
 include_once 'crud.php';
 include_once 'header.php';
 $object = new Crud();
+$dbh = new Dbh();
+$conn = $dbh->connect();
 ?>
 
     <div class="container">
@@ -34,7 +36,19 @@ $object = new Crud();
                 <div class="input-group">
                     <select name="id_crew" class="form-control">
                         <option value="" selected=""> Бригада </option>
-                        <?php $object->showCrews();
+                        <?php
+                        $crews = $object->showCrews($conn);
+                        if (isset($crews)){
+                        foreach ($crews as $item) {?>
+                        <option value="<?php echo htmlspecialchars($item)?>"
+                            <?php
+                            if ($_GET['id_crew']==htmlspecialchars($item)) {?>
+                                selected="selected"
+                            <?php }?>
+                        >
+                            <?php echo htmlspecialchars($item)?>
+                            <?php }
+                            }
                         ?>
                     </select>
                 </div>
@@ -47,5 +61,19 @@ $object = new Crud();
 
 
 <?php
-$object->editCollector();
+if(isset($_GET['editid'])) {
+    $_SESSION['editid'] = $_GET['editid'];
+}
+if (isset($_POST['submit_edit'])) {
+
+    $edit_collector_param = array();
+    $edit_collector_param[] =  mysqli_real_escape_string($conn, $_POST['name']);
+    $edit_collector_param[] =  mysqli_real_escape_string($conn, $_POST['birth_date']);
+    $edit_collector_param[] =  mysqli_real_escape_string($conn, $_POST['characteristic']);
+    $edit_collector_param[] =  mysqli_real_escape_string($conn, $_POST['id_crew']);
+    $edit_collector_param[] =  $object->importPhoto();
+    $edit_collector_param[] = $_SESSION['editid'];
+    $object->editCollector($conn, $edit_collector_param);
+    unset($_SESSION['editid']);
+}
 include_once 'footer.php';
