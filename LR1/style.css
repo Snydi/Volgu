@@ -26,7 +26,7 @@ margin-top: 15px;
 
 }
 #search {
-    width:500px;
+    width:250px;
     height: 50px;
     margin-right: -20px;
 }
@@ -256,4 +256,17 @@ body{
 
     margin-top: 30px;
     margin-left: 10px;
+}
+#gang {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.mainbody {
+    text-align: center;
+    margin: 100px 0 100px 0;
+
+}
+.center {
+    text-align: center;
 }
