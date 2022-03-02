@@ -1,5 +1,5 @@
 <?php
-require_once 'logic.php';
+require_once 'Actions.php';
 require_once 'header.php'
 ?>
 <div class="container">
@@ -62,6 +62,4 @@ require_once 'header.php'
         } ?></p>
 </form>
 </div>
-<?php
 
-require_once 'footer.php'?>

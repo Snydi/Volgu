@@ -95,11 +95,18 @@ class CollectorsTable
 
         return $result;
     }
-    public static function getCrewData():mysqli_result{ //функция берет информацию ТОЛЬКО для дропдауна
+    public static function getCrewData(){ //функция берет информацию ТОЛЬКО для дропдауна
         $query="SELECT crew FROM crews";
         if (Database::connection()) {
-            $result = mysqli_query(Database::connection(), $query) or die(mysqli_error(Database::connection()));
+            $queryresult = mysqli_query(Database::connection(), $query) or die(mysqli_error(Database::connection()));
         }
+        $result = array();
+        if(isset($queryresult))
+            if(mysqli_num_rows($queryresult))
+                while($row = mysqli_fetch_assoc($queryresult))
+                    $result[]=$row['crew'];
+
+
         return $result;
     }
     private static function getRelativeFilePath():string {

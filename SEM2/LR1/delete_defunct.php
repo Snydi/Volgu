@@ -1,5 +1,5 @@
 <?php
-require_once 'logic.php';
+require_once 'Actions.php';
 require_once 'header.php';
 require_once 'Database.php';
 require_once 'CollectorsTable.php';
@@ -58,5 +58,3 @@ $defunct=CollectorsTable::getRecord();
         <div class="col-4"><button class="btn btn-danger" type="submit" name="delete">Удалить</button></div>
     </form>
 </div>
-<?php
-require_once 'footer.php'?>

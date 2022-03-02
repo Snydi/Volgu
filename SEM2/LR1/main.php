@@ -1,6 +1,7 @@
 <?php
 require_once 'header.php';
-require_once 'logic.php'?>
+require_once 'Actions.php';
+?>
 <div class="container">
     <h1>Список сборщиков</h1>
     <table class="table table-hover table-responsive">
@@ -36,4 +37,3 @@ require_once 'logic.php'?>
         </tbody>
     </table>
     <a class="btn btn-info1" type="button" href="add_defunct.php">Добавить</a></div>
-<?php require_once 'footer.php'?>
