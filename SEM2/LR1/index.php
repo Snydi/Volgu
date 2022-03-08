@@ -1,3 +1,3 @@
 <?php
-header("Location: main.php", TRUE, 301);
+header("Location: collectors.php", TRUE, 301);
 exit();
