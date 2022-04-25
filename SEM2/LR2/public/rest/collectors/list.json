@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Максим",
+    "birth_date": "Зенин",
+    "characteristic": "Максимович",
+    "crew": "ПМИ"
+  },
+  {
+    "id": 2,
+    "name": "Денис",
+    "birth_date": "Гусельников",
+    "characteristic": "Денисович",
+    "crew": "ПМИ"
+  },
+  {
+    "id": 3,
+    "name": "Дмитрий",
+    "birth_date": "Владимиров",
+    "characteristic": "Дмитриевич",
+    "crew": "МОС"
+  },
+  {
+    "id": 4,
+    "name": "Роман",
+    "birth_date": "Мартышкин",
+    "characteristic": "Романович",
+    "crew": "ПМИ"
+  }
+]
