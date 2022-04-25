@@ -1,34 +1,33 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . "/vendor/autoload.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . '/vendor/autoload.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . "/classes/crews.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/classes/collectors.php";
 $app = new Silex\Application();
 
 //для групп:
 $app->get('/crews/list.json', function () {
-	$group = new Crews;
-	$list = $group->read();
+	$crew = new Crews;
+	$list = $crew->read();
 	return json_encode($list);
 });
 
 $app->post('/crews/add-item', function () {
 
-	if ($_POST['groupName'] && $_POST['speciality']) {
-		$nameGroup = $_POST['groupName'];
-		$speciality = $_POST['speciality'];
-		$group = new Crews;
+	if ($_POST['crewName']) {
+		$nameCrew = $_POST['crewName'];
+		$crew = new Crews;
 		try {
-			$group->create(array("groupName" => $nameGroup, "speciality" => $speciality));
-			$lastid = $group->lastID();
-			return json_encode(array("create-group" => "yes", "create-id" => $lastid));
+            $crew->create(array("crewName" => $nameCrew));
+			$lastid = $crew->lastID();
+			return json_encode(array("create-crew" => "yes", "create-id" => $lastid));
 		} catch (PDOException $e) {
-			return json_encode(array("error" => $e->getMessage(), "create-group" => "no"));
+			return json_encode(array("error" => $e->getMessage(), "create-crew" => "no"));
 		}
 	} else {
-		return json_encode(array("create-group" => "no"));
+		return json_encode(array("create-crew" => "no"));
 	}
 });
-$app->post('/group/update-item', function () {
+$app->post('/crews/update-item', function () {
 	$group = new Crews;
 	$idGroup = intval($_POST["idGroup"]);
 	$groupName = $_POST["groupName"];
@@ -45,7 +44,7 @@ $app->post('/group/update-item', function () {
 	}
 });
 
-$app->post('/crew/delete-item', function () {
+$app->post('/crews/delete-item', function () {
 	$group = new Crews;
 	$id = intval($_POST["id"]);
 	if ($group->exists($id)) {
@@ -64,8 +63,8 @@ $app->post('/crew/delete-item', function () {
 
 $app->get('/student/list.json', function () {
 
-	$student = new Collectors();
-	$list = $student->read();
+	$collector = new Collectors();
+	$list = $collector->read();
 	return json_encode($list);
 });
 $app->post('/student/add-item', function () {

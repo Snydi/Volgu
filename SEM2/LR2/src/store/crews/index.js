@@ -42,12 +42,12 @@ export default {
       const idRemovedItem = await api.remove( id );
       commit('removeItem', idRemovedItem);
     },
-    addItem: async ({ commit }, { group, speciality }) => {
-      const item = await api.add({ group, speciality });
+    addItem: async ({ commit }, { group }) => {
+      const item = await api.add({ group });
       commit('addItem', item);
     },
-    updateItem: async ({ commit }, { id, group, speciality }) => {
-      const item = await api.update({ id, group, speciality });
+    updateItem: async ({ commit }, { id, group }) => {
+      const item = await api.update({ id, group });
       commit('updateItem', item);
     }
   },

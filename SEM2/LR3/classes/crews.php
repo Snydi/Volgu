@@ -7,4 +7,9 @@ class Crews extends TableModule
 	{
 		return "crews";
 	}
+    protected function getFields(): array
+    {
+        $fields[] = 'crew';
+        return $fields;
+    }
 }

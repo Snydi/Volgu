@@ -21,8 +21,8 @@ class Crews extends Api {
 
   /**
    * Создаст новую запись в таблице
-   * @param group объект группы, взятый из FormGroup
    * @returns {Promise<Response>}
+   * @param crew
    */
   add = ( crew ) => this.rest('crews/add-item', {
     method: 'POST',

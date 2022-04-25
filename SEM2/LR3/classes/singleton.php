@@ -12,7 +12,7 @@ class Singleton
 		$user = '';
 		$pass = '';
 		$charset = '';
-		include "settings.php";//файл с объявлением 5 предыдущих переменных для подключения к БД
+		//include "settings.php";//файл с объявлением 5 предыдущих переменных для подключения к БД
 		$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 		$opt = [
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

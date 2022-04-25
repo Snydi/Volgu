@@ -4,7 +4,7 @@ require_once "singleton.php";
 abstract class TableModule
 {
 	abstract protected function getTableName(): string;
-
+    abstract  protected function getFields():array;
 	/**
 	 * @param int $id
 	 * @throws PDOException
@@ -40,8 +40,9 @@ abstract class TableModule
 	 * @param array $fields
 	 * @throws PDOException
 	 */
-	public function create($fields)
+	public function create()
 	{
+        $fields = $this->getFields();
 		$keys = [];
 		$keyparam = [];
 		$arField = [];

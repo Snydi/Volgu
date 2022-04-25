@@ -7,4 +7,5 @@ class Collectors extends TableModule
 	{
 		return "collectors";
 	}
+
 }
