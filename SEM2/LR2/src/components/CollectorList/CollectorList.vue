@@ -1,18 +1,18 @@
 <template>
   <div :class="$style.root">
+
     <Table
       :headers="[
-        {value: 'id', text: 'ID'},
         {value: 'name', text: 'ФИО'},
         {value: 'birth_date', text: 'Дата рождения'},
         {value: 'characteristic', text: 'Характеристика'},
         {value: 'crew', text: 'Бригада'},
         {value: 'control', text: 'Действие'},
       ]"
+
       :items="items"
     >
       <template v-slot:control="{ item }">
-        <Btn @click="onClickFilter()" theme="info">Сортировать</Btn>
         <Btn @click="onClickEdit(item.id)" theme="info">Изменить</Btn>
         <Btn @click="onClickRemove(item.id)" theme="danger">Удалить</Btn>
       </template>
@@ -21,17 +21,17 @@
       <Btn :class="$style.create" theme="info">Создать</Btn>
     </router-link>
   </div>
+  <Btn v-if="$route.params.id" @click="onClickClear()" theme="danger" > Очистить фильтр </Btn>
 </template>
 
 <script>
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
+import {computed,onMounted} from 'vue';
 import { useRouter } from 'vue-router';
-
-import { selectItems, removeItem, fetchItems,fetchFiltered } from '@/store/collectors/selectors';
+import { useRoute } from "vue-router";
+import { selectItems, removeItem, fetchFiltered,fetchItems } from '@/store/collectors/selectors';
 import Table from '@/components/Table/Table';
 import Btn from '@/components/Btn/Btn';
-
 export default {
   name: 'CollectorList',
   components: {
@@ -41,10 +41,22 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
+    const route = useRoute();
+
     onMounted(() => {
-      fetchItems(store);
+
+      if (typeof route.params.id !== "undefined") {
+        fetchFiltered(store,  route.params.id);
+      }
+      else
+      {
+        fetchItems(store);
+      }
+
     });
+
     return {
+
       items: computed(() => selectItems(store)),
       onClickRemove: id => {
         const isConfirmRemove = confirm('Вы действительно хотите удалить запись?')
@@ -55,14 +67,16 @@ export default {
       onClickEdit: id => {
         router.push({ name: 'CollectorEdit', params: { id } })
       },
-      onClickFilter() {
-          fetchFiltered(store);
-        }
+      onClickClear() {
+        router.push({ name: 'Collectors' });
+        fetchItems(store);
       }
-    }
 
+      }
+    },
 
 }
+
 </script>
 
 <style module lang="scss">
@@ -70,6 +84,7 @@ export default {
 
   .create {
     margin-top: 16px;
+    text-align: center;
   }
 
 }

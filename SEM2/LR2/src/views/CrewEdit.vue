@@ -14,7 +14,7 @@ import { updateItem, addItem } from '@/store/crews/selectors';
 import Layout from '@/components/Layout/Layout';
 import CrewForm from '@/components/CrewForm/CrewForm';
 export default {
-  name: 'GroupEdit',
+  name: 'CrewEdit',
   props: {
     id: String,
   },
@@ -25,9 +25,9 @@ export default {
   setup() {
     const store = useStore();
     return {
-      onSubmit: ({ id, group, speciality }) => id ?
-          updateItem(store, { id, group, speciality }) :
-          addItem(store, { group, speciality }),
+      onSubmit: ({ id, crew }) => id ?
+          updateItem(store, { id, crew }) :
+          addItem(store, { crew }),
     };
   }
 }

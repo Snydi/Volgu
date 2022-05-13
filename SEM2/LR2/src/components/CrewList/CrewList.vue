@@ -1,15 +1,15 @@
 <template>
+
   <div :class="$style.root">
     <Table
         :headers="[
-          {value: 'id', text: 'ID'},
-          {value: 'crew', text: 'Группа'},
+          {value: 'crew', text: 'Бригада'},
           {value: 'control', text: 'Действие'},
         ]"
         :items="items"
     >
       <template v-slot:control="{ item }">
-        <Btn @click="onClickFilter()" theme="info">Сортировать</Btn>
+        <Btn @click="onClickFilter(item.id)" theme="info">Фильтровать</Btn>
         <Btn @click="onClickEdit(item.id)" theme="info">Изменить</Btn>
         <Btn @click="onClickRemove(item.id)" theme="danger">Удалить</Btn>
       </template>
@@ -24,8 +24,7 @@
 import { useStore } from 'vuex';
 import { computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-
-import { selectItems, removeItem, fetchItems,fetchFiltered } from '@/store/crews/selectors'
+import { selectItems, removeItem, fetchItems } from '@/store/crews/selectors'
 import Table from '@/components/Table/Table';
 import Btn from '@/components/Btn/Btn';
 export default {
@@ -51,10 +50,9 @@ export default {
       onClickEdit: ( id ) => {
         router.push({ name: 'CrewEdit', params: { id } })
       },
-      onClickFilter() {
-        fetchFiltered(store);
+      onClickFilter: ( id ) => {
+        router.push({ name: 'Collectors', params: { id } })
       }
-
     }
   },
 }

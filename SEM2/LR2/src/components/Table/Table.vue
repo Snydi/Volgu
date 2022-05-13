@@ -15,6 +15,7 @@
               {{ item[key] }}
             </slot>
           </td>
+          <td> </td>
         </tr>
       </tbody>
     </table>
@@ -22,7 +23,12 @@
 </template>
 
 <script>
+import {useStore} from "vuex";
+import {onBeforeMount} from "vue";
+import {fetchItems} from "@/store/collectors/selectors";
+
 export default {
+
   name: 'Table',
   props: {
     items: Array,
@@ -32,13 +38,22 @@ export default {
     colKeys() {
       return this.headers.map(({ value }) => value);
     }
-  }
+  },
+  setup() {
+    const store = useStore();
+    onBeforeMount(() => {
+      fetchItems(store);
+    });
+  },
+
+
 }
+
 </script>
 
 <style module lang="scss">
 .root {
-  max-width: 900px;
+
   .table {
     width: 100%;
     border-collapse: collapse;

@@ -8,32 +8,40 @@
     </div>
     <div :class="$style.item">
       <div :class="$style.label">
-        <label for="name">Имя</label>
+        <label for="name">ФИО</label>
       </div>
-      <input v-model="form.name" :class="$style.input"  id="name" placeholder="Имя" type="text">
+      <input v-model="form.name" :class="$style.input"  id="name" placeholder="ФИО" type="text">
+    </div>
+
+    <div :class="$style.item">
+      <div :class="$style.label">
+      <label for="img_path">Фото</label>
+      </div>
+        <input  :class="$style.input"  id="img_path" placeholder="Фото" type="file" accept="image/*" @change="form.img_path = uploadImage($event)" >
     </div>
     <div :class="$style.item">
       <div :class="$style.label">
-        <label for="surname">Фамилия</label>
+        <label for="birth_date">Дата рождения</label>
       </div>
-      <input v-model="form.surname" :class="$style.input" id="surname" placeholder="Фамилия" type="text">
+      <input v-model="form.birth_date" :class="$style.input"  id="birth_date" placeholder="Дата рождения" type="text">
     </div>
     <div :class="$style.item">
       <div :class="$style.label">
-        <label for="patronymic">Отчество</label>
+        <label for="characteristic">Характеристика</label>
       </div>
-      <input v-model="form.patronymic" :class="$style.input" id="patronymic" placeholder="Отчество" type="text">
+      <input v-model="form.characteristic" :class="$style.input"  id="characteristic" placeholder="Характеристика" type="text">
     </div>
     <div :class="$style.item">
       <div :class="$style.label">
-        <label for="group">Группа</label>
+        <label for="id_crew">Группа</label>
       </div>
-      <select v-model="form.group" :class="$style.select" name="group" id="group">
-        <option v-for="item in ['ПМИ','ПИ','МОС','ИВТ']" :key="item" :value="item">
-          {{ item }}
+      <select v-model="form.id_crew" :class="$style.select"  id="id_crew">
+        <option v-for="({ crew, id  }) in crewList" :key="id" :value="id">
+        {{crew}}
         </option>
       </select>
     </div>
+
     <div :class="$style.item">
       <Btn @click="onClick" :disabled="!isValidForm" theme="info">Сохранить</Btn>
     </div>
@@ -45,48 +53,89 @@ import { computed, reactive, onBeforeMount, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
-import { selectItemById, fetchItems } from '@/store/collectors/selectors';
+import {selectItemById, fetchItems, selectItems} from '@/store/collectors/selectors';
+import { selectItems as selectCrews, fetchItems as fetchCrews } from '@/store/crews/selectors';
 import Btn from '@/components/Btn/Btn';
+import axios from "axios";
 
 export default {
-  name: 'StudentForm',
+  name: 'CollectorForm',
   props: {
     id: { type: String, default: '' },
   },
   components: {
     Btn,
   },
+  methods: {
+
+    uploadImage(event) {
+      const URL = 'http://localhost/sem2/lr3/rest/index.php/collectors/upload-image';
+
+      let data = new FormData();
+      data.append('name', 'my-picture');
+      data.append('file', event.target.files[0]);
+      let config = {
+        method: 'post',
+        header : {
+          'Content-Type' : 'image/png'
+        }
+
+      }
+      axios.post(
+          URL,
+          data,
+          config
+      ).then(
+          response => {
+            console.log('image upload response > ', response)
+          }
+      )
+      var fileData =  event.target.files[0];
+      return fileData.name;
+    }
+  },
+
+
   setup(props, context) {
     const store = useStore();
     const router = useRouter();
+    const crewList = computed(() => selectCrews(store))
+    const collectorList = computed(() => selectItems(store));
     const form = reactive({
       id: '',
       name: '',
-      surname: '',
-      patronymic: '',
-      group: '',
+      img_path: '',
+      birth_date: '',
+      characteristic: '',
+      id_crew: '',
     });
 
     onBeforeMount(() => {
       fetchItems(store);
+      fetchCrews(store);
+
     });
 
     watchEffect(() => {
-      const student = selectItemById( store,  props.id );
-      Object.keys(student).forEach(key => {
-        form[key] = student[key]
+
+      const collector = selectItemById( store,  props.id );
+      Object.keys(collector).forEach(key => {
+        form[key] = collector[key]
       })
     });
 
     return {
+      crewList,
+      collectorList,
       form,
-      isValidForm: computed(() =>  !!(form.name && form.surname && form.patronymic && form.group)),
+      isValidForm: computed(() =>  !!(form.name && form.birth_date && form.characteristic && form.id_crew)),
       onClick: () => {
         context.emit('submit', form);
         router.push({ name: 'Collectors' })
       }
     }
   },
+
 }
 </script>
 

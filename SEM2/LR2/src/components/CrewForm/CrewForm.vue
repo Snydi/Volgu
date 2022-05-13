@@ -8,19 +8,9 @@
     </div>
     <div :class="$style.item">
       <div :class="$style.label">
-        <label for="crew">Название группы</label>
+        <label for="crew">Бригада</label>
       </div>
-      <select v-model="form.group" :class="$style.select" name="group" id="group">
-        <option v-for="item in ['ПМИ','ПИ','МОС','ИВТ']" :key="item" :value="item">
-          {{ item }}
-        </option>
-      </select>
-    </div>
-    <div :class="$style.item">
-      <div :class="$style.label">
-        <label for="speciality">Специальность</label>
-      </div>
-      <input v-model="form.speciality" :class="$style.input" id="speciality" placeholder="Специальность" type="text">
+      <input v-model="form.crew" :class="$style.input" id="crew" placeholder="Бригада" type="text">
     </div>
     <div :class="$style.item">
       <Btn @click="onClick" :disabled="!isValidForm" theme="info">Сохранить</Btn>
@@ -32,11 +22,10 @@
 import { computed, reactive, onBeforeMount, watchEffect } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-
-import { selectItemById, fetchItems } from '@/store/crews/selectors';
+import { selectItemById, fetchItems, selectItems } from '@/store/crews/selectors';
 import Btn from '@/components/Btn/Btn';
 export default {
-  name: 'GroupForm',
+  name: 'CrewForm',
   components: {
     Btn,
   },
@@ -46,32 +35,29 @@ export default {
   setup(props, context) {
     const store = useStore();
     const router = useRouter();
+    const crewList = computed(() => selectItems(store));
     const form = reactive({
       id: '',
-      group: '',
-      speciality: '',
+      crew: '',
     });
-
     onBeforeMount(() => {
       fetchItems(store);
     });
-
     watchEffect(() => {
-      const group = selectItemById( store,  props.id );
-      Object.keys(group).forEach(key => {
-        form[key] = group[key]
+      const crew = selectItemById( store,  props.id );
+      Object.keys(crew).forEach(key => {
+        form[key] = crew[key]
       })
     });
-
     return {
+      crewList,
       form,
-      isValidForm: computed(() =>  !!(form.group && form.speciality)),
+      isValidForm: computed(() =>  !!(form.crew)),
       onClick: () => {
         context.emit('submit', form);
-        router.push({ name: 'Groups' })
+        router.push({ name: 'Crews' })
       },
     }
-
   }
 }
 </script>
@@ -80,20 +66,16 @@ export default {
 .root {
   padding-top: 30px;
   max-width: 900px;
-
   .item {
     display: flex;
     align-items: center;
-
     & + .item {
       margin-top: 15px;
     }
   }
-
   .label {
     flex: 0 0 150px;
   }
-
   .input {
     display: block;
     width: 100%;
@@ -106,7 +88,6 @@ export default {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
   }
-
   .select {
     display: block;
     width: 100%;
@@ -125,6 +106,5 @@ export default {
     border-radius: 0.25rem;
     appearance: none;
   }
-
 }
 </style>

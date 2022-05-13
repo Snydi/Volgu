@@ -2,8 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/collectors',
+    path: '/collectors/:id?',
     name: 'Collectors',
+    props: (route) => {
+      return {
+        id: route.params.id,
+      }
+    },
     component: () => import('@/views/CollectorsPage')
   },
   {
@@ -22,7 +27,7 @@ const routes = [
     component: () => import('@/views/CollectorEdit'),
   },
   {
-    path: '/group-edit/:id?',
+    path: '/crew-edit/:id?',
     name: 'CrewEdit',
     props: (route) => {
       return {

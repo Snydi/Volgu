@@ -2,11 +2,6 @@ export const fetchItems = ( store ) => {
   const { dispatch } = store;
   dispatch('crews/fetchItems');
 };
-export const fetchFiltered = (store) => {
-  const { dispatch } = store;
-  dispatch('crews/fetchFiltered');
-};
-
 export const selectItems = ( store ) => {
   const { getters } = store;
   return getters['crews/items']
@@ -17,14 +12,14 @@ export const removeItem = ( store, id ) => {
   dispatch('crews/removeItem', id);
 }
 
-export const addItem = ( store, { group, speciality } ) => {
+export const addItem = ( store, {id,crew} ) => {
   const { dispatch } = store;
-  dispatch('crews/addItem', { group, speciality });
+  dispatch('crews/addItem', { id,crew });
 }
 
-export const updateItem = ( store, { id, group, speciality }) => {
+export const updateItem = ( store, { id, crew}) => {
   const { dispatch } = store;
-  dispatch('crews/updateItem', { id, group, speciality });
+  dispatch('crews/updateItem', { id, crew});
 }
 
 export const selectItemById = (store, id) => {

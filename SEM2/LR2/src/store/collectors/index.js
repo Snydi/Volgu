@@ -34,21 +34,22 @@ export default {
       commit('setItems', items)
     },
     fetchFiltered: async ({ commit }) => {
-      const response = await api.collectorsfiltered();
+      const response = await api.collectorsFiltered();
       const items = await response.json();
-      commit('setItems', items)
+      commit('setItems', items);
+
     },
     removeItem: async ({ commit }, id) => {
       const idRemovedItem = await api.remove( id );
       commit('removeItem', idRemovedItem);
 
     },
-    addItem: async ({ commit }, { name, surname, patronymic, group }) => {
-      const item = await api.add({ name, surname, patronymic, group })
+    addItem: async ({ commit }, { name, img_path,birth_date, characteristic, id_crew }) => {
+      const item = await api.add({ name, img_path,birth_date, characteristic, id_crew })
       commit('setItem', item)
     },
-    updateItem: async ({ commit }, { id, name, surname, patronymic, group }) => {
-      const item = await api.update({ id, name, surname, patronymic, group });
+    updateItem: async ({ commit }, { id, name, img_path,birth_date, characteristic, id_crew }) => {
+      const item = await api.update({ id,img_path, name, birth_date, characteristic, id_crew });
       commit('updateItem', item);
     }
   },

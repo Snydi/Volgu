@@ -1,5 +1,4 @@
 import api from './api';
-
 export default {
   namespaced: true,
   state: {
@@ -33,21 +32,16 @@ export default {
       const items = await response.json();
       commit('setItems', items)
     },
-    fetchFiltered: async ({ commit }) => {
-      const response = await api.crewsfiltered();
-      const items = await response.json();
-      commit('setItems', items)
-    },
     removeItem: async ({ commit }, id) => {
       const idRemovedItem = await api.remove( id );
       commit('removeItem', idRemovedItem);
     },
-    addItem: async ({ commit }, { group }) => {
-      const item = await api.add({ group });
+    addItem: async ({ commit }, { crew }) => {
+      const item = await api.add({ crew });
       commit('addItem', item);
     },
-    updateItem: async ({ commit }, { id, group }) => {
-      const item = await api.update({ id, group });
+    updateItem: async ({ commit }, { id, crew }) => {
+      const item = await api.update({ id, crew });
       commit('updateItem', item);
     }
   },

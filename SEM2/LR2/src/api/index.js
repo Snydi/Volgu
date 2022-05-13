@@ -10,7 +10,7 @@ class Api {
 
   rest = async (method, options) => {
     return this.request(method, options)
-      .then((data) => data);
+        .then((data) => data);
   }
 
 }

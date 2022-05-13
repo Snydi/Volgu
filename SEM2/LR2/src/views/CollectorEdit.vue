@@ -23,9 +23,9 @@ export default {
   setup() {
     const store = useStore();
     return {
-      onSubmit: ({ id, name, surname, patronymic, group }) => id ?
-          updateItem(store, { id, name, surname, patronymic, group }) :
-          addItem(store, { name, surname, patronymic, group } )
+      onSubmit: ({ id, name, birth_date, characteristic, id_crew, img_path}) => id ?
+          updateItem(store, { id, img_path, name, birth_date, characteristic, id_crew }) :
+          addItem(store, { name,img_path, birth_date, characteristic, id_crew } )
     }
   }
 

@@ -1,9 +1,9 @@
 [
   {
-    "id": 3,
+    "id": 1,
     "name": "Дмитрий",
-    "birth_date": "Владимиров",
-    "characteristic": "Дмитриевич",
-    "crew": "МОС"
+    "birth_date": "2002-08-28",
+    "characteristic": "Гений",
+    "crew": "Первая"
   }
 ]
